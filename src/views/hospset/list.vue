@@ -35,7 +35,10 @@
                 <template slot-scope="scope">
                     <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)"></el-button>
                     <el-button v-if="scope.row.status==1" type="primary" size="mini"  @click="lockHospSet(scope.row.id,0)">锁定</el-button>
-                    <el-button v-if="scope.row.status==0" type="primary" size="mini"  @click="lockHospSet(scope.row.id,1)">解锁</el-button>               
+                    <el-button v-if="scope.row.status==0" type="danger" size="mini"  @click="lockHospSet(scope.row.id,1)">解锁</el-button>               
+                    <router-link :to="'/hospset/edit/'+scope.row.id">
+                        <el-button type="primary" size="mini" icon="el-icon-edit"></el-button>
+                    </router-link>
                 </template>
             </el-table-column>
         </el-table>
@@ -49,6 +52,7 @@
         @current-change="getList"
         />
     </div>
+    
 </template>
 <script>
 import hospset from '@/api/hospset.js'
@@ -93,7 +97,7 @@ export default{
                         message: '删除成功!'
                     })
                     //刷新页面
-                    this.getList(1)
+                    this.getList(this.current)
                 })
             })
         },
@@ -125,7 +129,7 @@ export default{
                         message: '删除成功!'
                     })
                     //刷新页面
-                    this.getList(1)
+                    this.getList(this.current)
                 })
             })
         },
@@ -139,4 +143,5 @@ export default{
 
     }
 }
+
 </script>

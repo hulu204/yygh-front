@@ -37,9 +37,9 @@ export const constantRouterMap = [
     }]
   },
   {
-    path: '/hospSet',
+    path: '/hospset',
     component: Layout,
-    redirect: '/example/list',
+    redirect: 'list',
     name: '医院设置管理',
     meta: { title: '医院设置管理', icon: 'example' },
     children: [
@@ -47,13 +47,20 @@ export const constantRouterMap = [
         path: 'list',
         name: '医院设置列表',
         component: () => import('@/views/hospset/list'),
-        meta: { title: '医院设置列表', icon: 'table' }
+        meta: { title: '列表', icon: 'table' }
       },
       {
         path: 'add',
         name: '医院设置添加',
         component: () => import('@/views/hospset/add'),
-        meta: { title: '医院设置添加', icon: 'tree' }
+        meta: { title: '添加', icon: 'tree' }
+      },
+      {
+        path: 'edit/:id',
+        name: '医院设置修改',
+        component: () => import('@/views/hospset/add'),
+        meta: { title: '修改', icon: 'tree' },
+        hidden: true
       }
     ]
   },
